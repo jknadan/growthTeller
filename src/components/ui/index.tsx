@@ -18,10 +18,10 @@ export function Button({
     "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
   const variants = {
-    primary: "gradient-button text-white",
-    secondary: "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm",
-    outline: "border border-white/30 bg-transparent text-white hover:bg-white/10 backdrop-blur-sm",
-    ghost: "hover:bg-white/20 text-white",
+    primary: "apple-button",
+    secondary: "apple-button-secondary",
+    outline: "apple-button-secondary",
+    ghost: "hover:bg-gray-100 text-gray-600",
   };
 
   const sizes = {

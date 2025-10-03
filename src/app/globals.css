@@ -2,7 +2,10 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1d1d1f;
+  --apple-blue: #0071e3;
+  --apple-gray: #86868b;
+  --apple-light-gray: #f5f5f7;
 }
 
 @theme inline {
@@ -14,133 +17,180 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #f5f5f7;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.022em;
 }
 
-/* 모던 그라데이션 디자인 */
-.gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
+/* Apple 스타일 디자인 */
+.apple-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 22px;
 }
 
-.gradient-bg-alt {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+.apple-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.gradient-bg-success {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+.apple-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.gradient-bg-warning {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+.apple-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-.gradient-bg-info {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+.apple-button {
+  background: var(--apple-blue);
+  color: white;
+  border: none;
+  border-radius: 980px;
+  padding: 12px 24px;
+  font-size: 17px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* 글래스모피즘 효과 */
-.glass-card {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+.apple-button:hover {
+  background: #0077ed;
+  transform: scale(1.02);
 }
 
-.glass-card-dark {
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+.apple-button-secondary {
+  background: transparent;
+  color: var(--apple-blue);
+  border: 1px solid var(--apple-blue);
+  border-radius: 980px;
+  padding: 12px 24px;
+  font-size: 17px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* 그라데이션 텍스트 */
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.apple-button-secondary:hover {
+  background: var(--apple-blue);
+  color: white;
 }
 
-.gradient-text-alt {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.apple-text-large {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.005em;
+}
+
+.apple-text-medium {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: 0.007em;
+}
+
+.apple-text-small {
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: 0.011em;
+}
+
+.apple-text-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+}
+
+.apple-text-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -0.01em;
+}
+
+.apple-section {
+  padding: 80px 0;
+}
+
+.apple-hero {
+  text-align: center;
+  padding: 120px 0 80px;
+}
+
+.apple-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.apple-link {
+  color: var(--apple-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.apple-link:hover {
+  color: #0077ed;
 }
 
 /* 애니메이션 */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+@keyframes apple-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.float-animation {
-  animation: float 3s ease-in-out infinite;
+.apple-fade-in {
+  animation: apple-fade-in 0.6s ease-out;
 }
 
-@keyframes pulse-gradient {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-.pulse-gradient {
-  animation: pulse-gradient 2s ease-in-out infinite;
-}
-
-/* 그라데이션 버튼 */
-.gradient-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.gradient-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-}
-
-.gradient-button:active {
-  transform: translateY(0);
-}
-
-.gradient-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.gradient-button:hover::before {
-  left: 100%;
-}
-
-/* 네비게이션 그라데이션 */
-.gradient-nav {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* 카드 호버 효과 */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+/* 반응형 */
+@media (max-width: 768px) {
+  .apple-container {
+    padding: 0 16px;
+  }
+  
+  .apple-text-large {
+    font-size: 40px;
+  }
+  
+  .apple-text-medium {
+    font-size: 24px;
+  }
+  
+  .apple-text-small {
+    font-size: 19px;
+  }
+  
+  .apple-hero {
+    padding: 80px 0 60px;
+  }
+  
+  .apple-section {
+    padding: 60px 0;
+  }
 }

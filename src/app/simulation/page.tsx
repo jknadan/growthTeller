@@ -9,15 +9,15 @@ export default function SimulationPage() {
   const { currentResult, scenarios } = useSimulationStore();
 
   return (
-    <div className="min-h-screen gradient-bg-alt">
+    <div className="min-h-screen bg-white pt-16">
       {/* 페이지 헤더 */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="apple-section">
+        <div className="apple-container">
           <div className="text-center">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="apple-text-medium text-gray-900 mb-4">
               투자 시뮬레이션
             </h1>
-            <p className="text-sm sm:text-base text-gray-600 px-4">
+            <p className="apple-text-body text-gray-600">
               월 불입액과 투자 전략을 설정하여 미래 자산을 시뮬레이션해보세요
             </p>
           </div>
