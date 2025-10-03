@@ -5,18 +5,18 @@ import { Card, CardHeader, CardTitle } from "../components/ui";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen gradient-bg">
       {/* 페이지 헤더 */}
-      <div className="bg-white border-b">
+      <div className="bg-white/10 backdrop-blur-sm border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 float-animation">
               📈 GrowthTeller
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8">
+            <p className="text-lg sm:text-xl text-white/90 mb-6 sm:mb-8">
               20대 사회초년생을 위한 투자 시뮬레이션 서비스
             </p>
-            <p className="text-sm sm:text-base text-gray-500 max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-base text-white/80 max-w-2xl mx-auto px-4">
               복리 효과를 활용한 투자 계획을 세우고, 목표 금액 달성을 위한
               구체적인 로드맵을 만들어보세요. 데이터 기반의 투자 전략으로 미래를
               설계하세요.
@@ -30,7 +30,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* 투자 시뮬레이션 */}
           <Link href="/simulation">
-            <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="h-full glass-card card-hover cursor-pointer">
               <CardHeader>
                 <div className="text-center">
                   <div className="text-4xl mb-4">📊</div>
@@ -54,7 +54,7 @@ export default function HomePage() {
 
           {/* 목표 금액 역산 */}
           <Link href="/target">
-            <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="h-full glass-card card-hover cursor-pointer">
               <CardHeader>
                 <div className="text-center">
                   <div className="text-4xl mb-4">🎯</div>
@@ -77,7 +77,7 @@ export default function HomePage() {
 
           {/* 시나리오 비교 */}
           <Link href="/comparison">
-            <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="h-full glass-card card-hover cursor-pointer">
               <CardHeader>
                 <div className="text-center">
                   <div className="text-4xl mb-4">⚖️</div>
