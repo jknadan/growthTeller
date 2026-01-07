@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📈 GrowthTeller
 
-## Getting Started
+> 첫 월급부터 시작하는 가장 쉬운 투자 습관 만들기
 
-First, run the development server:
+사회초년생을 위한 투자 시뮬레이션 서비스로, 복잡한 금융 지식 없이도 나의 미래 자산을 쉽게 예측하고 목표를 세울 수 있습니다.
+
+## 🎯 프로젝트 목적
+
+GrowthTeller는 **20대 사회초년생들이 투자에 대한 막연한 두려움을 극복하고, 작은 금액부터 시작할 수 있도록 돕는 것**을 목표로 합니다.
+
+### 해결하고자 하는 문제
+
+- **"얼마를 모아야 하는지 모르겠어요"** - 막연한 목표금액에 대한 구체적인 계획이 없음
+- **"투자는 어렵고 복잡해요"** - 복잡한 금융 용어와 계산식에 대한 거부감
+- **"지금 시작해도 될까요?"** - 소액 투자의 장기적 효과를 체감하기 어려움
+- **"어떤 전략이 나한테 맞을까?"** - 여러 투자 방법을 비교하기 어려움
+
+## 👥 타겟 사용자
+
+### 주 타겟
+
+- **사회초년생 (22-29세)**: 첫 월급을 받고 재무 계획을 세우고 싶은 사람들
+- **투자 입문자**: 투자를 시작하고 싶지만 어디서부터 해야 할지 모르는 사람들
+- **목표 설정이 필요한 사람**: 결혼자금, 내 집 마련 등 구체적인 목표가 있는 사람들
+
+### 부가 타겟
+
+- 자녀의 재무 교육을 원하는 부모
+- 투자 습관을 개선하고 싶은 30대 초반
+
+## ✨ 주요 기능
+
+### 1. 💰 투자 시뮬레이션
+
+- 월 투자금액, 투자 기간, 기대 수익률을 입력하면 미래 자산 예측
+- 직관적인 차트로 자산 증가 추이 시각화
+- 10년, 20년 후의 구체적인 금액 확인 가능
+- **해결**: "내가 지금 투자하면 나중에 얼마가 될까?"
+
+### 2. 🎯 목표 금액 역산
+
+- 원하는 목표 금액과 기간을 입력하면 필요한 월 투자금액 계산
+- 결혼자금, 내 집 마련, 첫 차 구매 등 실생활 목표 템플릿 제공
+- 현실적으로 달성 가능한 금액 제시
+- **해결**: "3년 후 결혼자금 5천만원을 모으려면 얼마씩 모아야 할까?"
+
+### 3. ⚖️ 시나리오 비교
+
+- 여러 투자 전략을 저장하고 한눈에 비교
+- 공격적 투자 vs 안정적 투자 등 다양한 전략 비교 분석
+- 리스크와 수익률의 트레이드오프 이해
+- **해결**: "여러 투자 방법 중 어떤 게 나한테 맞을까?"
+
+## 🛠 기술 스택
+
+- **Frontend**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Charts**: Recharts
+- **Form Handling**: React Hook Form + Zod
+- **Animation**: Framer Motion
+
+## 🚀 시작하기
+
+### 설치
 
 ```bash
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000) 접속
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 빌드
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 프로덕션 빌드
+npm run build
 
-## Learn More
+# 프로덕션 서버 실행
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📊 사용 예시
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 시나리오 1: 소액 투자의 힘
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> "월 10만원씩 20년 투자하면 얼마가 될까?"
 
-## Deploy on Vercel
+- 투자 시뮬레이션 페이지 접속
+- 월 10만원, 20년, 연 5% 수익률 입력
+- 결과: 약 4,110만원 (원금 2,400만원 + 수익 1,710만원)
+- **깨달음**: 작은 금액도 꾸준히 하면 큰돈이 된다!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 시나리오 2: 구체적인 목표 설정
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> "5년 후 결혼자금 5,000만원을 모으고 싶어요"
+
+- 목표 금액 역산 페이지 접속
+- 목표: 5,000만원, 기간: 5년, 예상 수익률: 5%
+- 결과: 월 약 71만원씩 저축 필요
+- **행동**: 현실적인 금액 조정 또는 기간 연장 고려
+
+### 시나리오 3: 전략 비교
+
+> "공격적 투자 vs 안정적 투자, 뭐가 나을까?"
+
+- 두 가지 시나리오 생성 후 저장
+  - A안: 월 30만원, 10년, 연 7% (공격적)
+  - B안: 월 40만원, 10년, 연 3% (안정적)
+- 시나리오 비교 페이지에서 차트 비교
+- **결정**: 본인의 리스크 성향에 맞는 전략 선택
+
+## 🎨 디자인 철학
+
+- **미니멀리즘**: Apple 스타일의 깔끔하고 직관적인 UI
+- **접근성**: 금융 지식이 없어도 이해할 수 있는 쉬운 표현
+- **시각화**: 숫자보다는 차트와 그래프로 직관적 이해 지원
+- **모바일 우선**: 언제 어디서나 확인할 수 있는 반응형 디자인
+
+## ⚠️ 면책 조항
+
+이 서비스는 **교육 및 시뮬레이션 목적**으로만 제공됩니다.
+
+- 실제 투자 조언이 아닙니다
+- 과거 수익률이 미래 수익을 보장하지 않습니다
+- 투자 결정 전 반드시 전문가와 상담하시기 바랍니다
+- 투자로 인한 손실에 대해 책임지지 않습니다
+
+## 📝 라이선스
+
+MIT License
+
+## 👨‍💻 개발자
+
+이 프로젝트는 사회초년생들의 재무 건강을 돕기 위한 개인 프로젝트입니다.
+
+---
+
+**💡 Tip**: 투자는 일찍 시작할수록 좋습니다. 지금 바로 시뮬레이션을 돌려보고 나만의 투자 계획을 세워보세요!
