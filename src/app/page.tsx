@@ -1,10 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { OnboardingModal } from "../components/onboarding/OnboardingModal";
+import { FeatureCard } from "../components/cards/FeatureCard";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white pt-16">
+      {/* 온보딩 모달 */}
+      <OnboardingModal />
       {/* 페이지 헤더 */}
       <div className="apple-hero">
         <div className="apple-container">
@@ -13,12 +17,11 @@ export default function HomePage() {
               GrowthTeller
             </h1>
             <p className="apple-text-medium text-gray-600 mb-6">
-              20대 사회초년생을 위한 투자 시뮬레이션 서비스
+              첫 월급부터 시작하는 가장 쉬운 투자 습관 만들기
             </p>
             <p className="apple-text-body text-gray-500 max-w-2xl mx-auto">
-              복리 효과를 활용한 투자 계획을 세우고, 목표 금액 달성을 위한
-              구체적인 로드맵을 만들어보세요. 데이터 기반의 투자 전략으로 미래를
-              설계하세요.
+              한 달에 커피 한 잔 금액으로도 시작할 수 있어요.<br/>
+              10년 후 당신의 모습을 미리 만나보세요. 투자는 생각보다 쉽고 단순합니다.
             </p>
           </div>
         </div>
@@ -29,67 +32,49 @@ export default function HomePage() {
         <div className="apple-container">
           <div className="apple-grid">
             {/* 투자 시뮬레이션 */}
-            <Link href="/simulation">
-              <div className="apple-card p-8 cursor-pointer">
-                <div className="text-center">
-                  <div className="text-5xl mb-6">📊</div>
-                  <h3 className="apple-text-small font-semibold text-gray-900 mb-4">
-                    투자 시뮬레이션
-                  </h3>
-                  <p className="apple-text-body text-gray-600 mb-6">
-                    월 불입액과 투자 전략을 설정하여 미래 자산을 시뮬레이션해보세요
-                  </p>
-                  <div className="space-y-2 text-left">
-                    <div className="apple-text-caption text-gray-500">• 다양한 투자 전략 비교</div>
-                    <div className="apple-text-caption text-gray-500">• 연도별 상세 결과 분석</div>
-                    <div className="apple-text-caption text-gray-500">• 시각적 차트로 결과 확인</div>
-                    <div className="apple-text-caption text-gray-500">• 시나리오 저장 및 비교</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+            <FeatureCard
+              href="/simulation"
+              icon="📊"
+              title="투자 시뮬레이션"
+              description="월 5만원부터 시작! 내 미래 자산이 어떻게 성장하는지 확인해보세요"
+              features={[
+                "• 초보자도 쉽게 이해할 수 있는 설명",
+                "• 현실적인 수익률로 계산",
+                "• 10년, 20년 후 미래 예측",
+                "• 매달 바로 확인 가능",
+              ]}
+              color="blue"
+            />
 
             {/* 목표 금액 역산 */}
-            <Link href="/target">
-              <div className="apple-card p-8 cursor-pointer">
-                <div className="text-center">
-                  <div className="text-5xl mb-6">🎯</div>
-                  <h3 className="apple-text-small font-semibold text-gray-900 mb-4">
-                    목표 금액 역산
-                  </h3>
-                  <p className="apple-text-body text-gray-600 mb-6">
-                    목표 금액을 달성하기 위해 필요한 월 불입액을 계산해보세요
-                  </p>
-                  <div className="space-y-2 text-left">
-                    <div className="apple-text-caption text-gray-500">• 목표 금액과 기간 설정</div>
-                    <div className="apple-text-caption text-gray-500">• 필요한 월 불입액 계산</div>
-                    <div className="apple-text-caption text-gray-500">• 연도별 투자 계획 수립</div>
-                    <div className="apple-text-caption text-gray-500">• 투자 전략별 비교</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+            <FeatureCard
+              href="/target"
+              icon="🎯"
+              title="목표 금액 역산"
+              description="내 집 마련, 결혼자금, 첫 차... 목표를 위해 얼마나 모아야 할까요?"
+              features={[
+                "• 실생활 목표별 템플릿 제공",
+                "• 현실적인 금액 역산",
+                "• 단계별 달성 계획",
+                "• 부담 없는 금액 제시",
+              ]}
+              color="green"
+            />
 
             {/* 시나리오 비교 */}
-            <Link href="/comparison">
-              <div className="apple-card p-8 cursor-pointer">
-                <div className="text-center">
-                  <div className="text-5xl mb-6">⚖️</div>
-                  <h3 className="apple-text-small font-semibold text-gray-900 mb-4">
-                    시나리오 비교
-                  </h3>
-                  <p className="apple-text-body text-gray-600 mb-6">
-                    여러 투자 전략을 비교하여 최적의 투자 방안을 찾아보세요
-                  </p>
-                  <div className="space-y-2 text-left">
-                    <div className="apple-text-caption text-gray-500">• 저장된 시나리오 관리</div>
-                    <div className="apple-text-caption text-gray-500">• 다중 차트 비교 분석</div>
-                    <div className="apple-text-caption text-gray-500">• 수익률 및 리스크 비교</div>
-                    <div className="apple-text-caption text-gray-500">• 최적 전략 선택 가이드</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+            <FeatureCard
+              href="/comparison"
+              icon="⚖️"
+              title="시나리오 비교"
+              description="여러 투자 전략을 비교하여 최적의 투자 방안을 찾아보세요"
+              features={[
+                "• 저장된 시나리오 관리",
+                "• 다중 차트 비교 분석",
+                "• 수익률 및 리스크 비교",
+                "• 최적 전략 선택 가이드",
+              ]}
+              color="purple"
+            />
           </div>
         </div>
       </main>

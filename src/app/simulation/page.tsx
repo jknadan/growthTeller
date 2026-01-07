@@ -25,10 +25,10 @@ export default function SimulationPage() {
       </div>
 
       {/* 메인 컨텐츠 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="space-y-6 sm:space-y-8">
           {/* 입력 폼 */}
-          <div>
+          <div className="flex justify-center">
             <SimulationForm />
           </div>
 
@@ -48,7 +48,7 @@ export default function SimulationPage() {
                   시뮬레이션을 시작해보세요
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600">
-                  왼쪽 폼에 투자 정보를 입력하고 계산하기 버튼을 눌러보세요.
+                  위 폼에 투자 정보를 입력하고 계산하기 버튼을 눌러보세요.
                 </p>
               </div>
             )}

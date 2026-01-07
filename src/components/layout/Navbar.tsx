@@ -48,7 +48,7 @@ export function Navbar() {
           {/* 로고 */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl sm:text-2xl">📈</span>
+              <span className="text-xl sm:text-2xl"></span>
               <span className="text-lg sm:text-xl font-semibold text-gray-900">
                 GrowthTeller
               </span>

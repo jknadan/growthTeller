@@ -24,10 +24,10 @@ export default function TargetPage() {
       </div>
 
       {/* 메인 컨텐츠 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="space-y-6 sm:space-y-8">
           {/* 입력 폼 */}
-          <div>
+          <div className="flex justify-center">
             <TargetCalculator />
           </div>
 
@@ -44,7 +44,7 @@ export default function TargetPage() {
                   목표를 설정해보세요
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600">
-                  왼쪽 폼에 목표 금액과 기간을 입력하고 역산 계산하기 버튼을
+                  위 폼에 목표 금액과 기간을 입력하고 역산 계산하기 버튼을
                   눌러보세요.
                 </p>
               </div>

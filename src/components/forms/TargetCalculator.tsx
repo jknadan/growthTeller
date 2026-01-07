@@ -1,11 +1,21 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Input, Select, Button, Card, CardHeader, CardTitle } from "../ui";
+import {
+  Input,
+  NumberInput,
+  Select,
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+} from "../ui";
 import { InvestmentStrategy } from "../../types";
 import { useSimulationStore } from "../../stores/simulationStore";
 import { formatCurrency } from "../../utils/calculations";
+import { GoalSelector, GoalDetails, GoalTemplate } from "../goals/GoalTemplates";
+import { Tooltip } from "../ui/Tooltip";
 
 // 목표 금액 역산 폼 검증 스키마
 const targetSchema = z.object({
@@ -14,38 +24,84 @@ const targetSchema = z.object({
     .number()
     .min(1, "최소 1년 이상")
     .max(50, "최대 50년까지 입력 가능합니다"),
-  strategy: z.enum(["bond", "index", "dividend", "custom", "portfolio"]),
+  strategy: z.enum(["bond", "index", "dividend", "custom"]),
   customReturnRate: z.number().optional(),
 });
 
 type TargetFormData = z.infer<typeof targetSchema>;
 
 const strategyOptions = [
-  { value: "bond", label: "국채 (세후 4%)" },
-  { value: "index", label: "인덱스 ETF (세후 6.8%)" },
-  { value: "dividend", label: "고배당 ETF (세후 8.46%)" },
-  { value: "custom", label: "커스텀 수익률" },
-  { value: "portfolio", label: "포트폴리오 비중 설정" },
+  { value: "bond", label: "국채 (안정적 4%)" },
+  { value: "index", label: "인덱스 ETF (추천 ⭐ 6.8%)" },
+  { value: "dividend", label: "고배당 ETF (적극적 8.46%)" },
+  { value: "custom", label: "직접 설정" },
 ];
 
 export function TargetCalculator() {
   const { calculateTarget, targetCalculation } = useSimulationStore();
+  const [selectedGoal, setSelectedGoal] = React.useState<GoalTemplate | null>(null);
+  const [showGoalSelector, setShowGoalSelector] = React.useState(false);
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    control,
+    setValue,
+    reset,
   } = useForm<TargetFormData>({
     resolver: zodResolver(targetSchema),
     defaultValues: {
-      targetAmount: 100000000, // 1억원
-      targetPeriod: 10, // 10년
+      targetAmount: selectedGoal?.targetAmount || 50000000, // 5천만원
+      targetPeriod: selectedGoal?.suggestedPeriod || 5, // 5년
       strategy: "index",
     },
   });
 
   const selectedStrategy = watch("strategy");
+
+  const handleGoalSelect = (goal: GoalTemplate) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/fd82309c-61f9-4b84-9928-7208b4522866',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'TargetCalculator.tsx:handleGoalSelect:entry',message:'handleGoalSelect called',data:{goalId:goal.id,goalTargetAmount:goal.targetAmount,goalSuggestedPeriod:goal.suggestedPeriod},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    
+    setSelectedGoal(goal);
+    setShowGoalSelector(false);
+    
+    // 선택한 목표의 값으로 폼 업데이트
+    if (goal.id === "custom") {
+      // "나만의 목표"는 값이 0이므로 폼은 그대로 유지
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/fd82309c-61f9-4b84-9928-7208b4522866',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'TargetCalculator.tsx:handleGoalSelect:custom',message:'Custom goal selected, skipping reset',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
+      return;
+    }
+    
+    // reset을 사용해 폼 값 확실하게 업데이트
+    const currentValues = watch();
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/fd82309c-61f9-4b84-9928-7208b4522866',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'TargetCalculator.tsx:handleGoalSelect:before-reset',message:'Values before reset',data:{currentValues,goalTargetAmount:goal.targetAmount,goalSuggestedPeriod:goal.suggestedPeriod},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
+    
+    const newValues = {
+      targetAmount: goal.targetAmount > 0 ? goal.targetAmount : currentValues.targetAmount,
+      targetPeriod: goal.suggestedPeriod > 0 ? goal.suggestedPeriod : currentValues.targetPeriod,
+      strategy: currentValues.strategy,
+      customReturnRate: currentValues.customReturnRate,
+    };
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/fd82309c-61f9-4b84-9928-7208b4522866',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'TargetCalculator.tsx:handleGoalSelect:calling-reset',message:'Calling reset with values',data:{newValues},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
+    
+    reset(newValues);
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/fd82309c-61f9-4b84-9928-7208b4522866',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'TargetCalculator.tsx:handleGoalSelect:after-reset',message:'Reset called, checking values',data:{valuesAfterReset:watch()},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
+  };
 
   const onSubmit = (data: TargetFormData) => {
     calculateTarget({
@@ -63,27 +119,82 @@ export function TargetCalculator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>목표 금액 역산</CardTitle>
+        <CardTitle>
+          <div className="flex items-center justify-between">
+            <span>목표 금액 역산</span>
+            <Button
+              type="button"
+              onClick={() => setShowGoalSelector(!showGoalSelector)}
+              variant="outline"
+              size="sm"
+            >
+              {showGoalSelector ? "닫기" : "🎯 목표 템플릿"}
+            </Button>
+          </div>
+        </CardTitle>
       </CardHeader>
+
+      {/* 목표 템플릿 선택 */}
+      {showGoalSelector && (
+        <div className="mb-6">
+          <GoalSelector 
+            onSelectGoal={handleGoalSelect}
+            currentGoalId={selectedGoal?.id}
+          />
+        </div>
+      )}
+
+      {/* 선택된 목표 표시 */}
+      {selectedGoal && !showGoalSelector && (
+        <div className="mb-6">
+          <GoalDetails goal={selectedGoal} />
+        </div>
+      )}
 
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 sm:space-y-6"
       >
         {/* 목표 금액 */}
-        <Input
-          label="목표 금액 (원)"
-          type="number"
-          {...register("targetAmount", { valueAsNumber: true })}
-          error={errors.targetAmount?.message}
-          placeholder="예: 100000000"
+        <Controller
+          name="targetAmount"
+          control={control}
+          render={({ field }) => {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/fd82309c-61f9-4b84-9928-7208b4522866',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'TargetCalculator.tsx:Controller:render',message:'Controller render called',data:{fieldValue:field.value},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+            // #endregion
+            
+            return (
+              <NumberInput
+                label="목표 금액 (원)"
+                inputMode="numeric"
+                value={field.value}
+                onChange={(e) => {
+                  const numericValue = Number(e.target.value);
+                  if (!isNaN(numericValue)) {
+                    field.onChange(numericValue);
+                    setSelectedGoal(null); // 수동 입력 시 템플릿 해제
+                  }
+                }}
+                error={errors.targetAmount?.message}
+                placeholder="예: 50000000"
+                showKoreanCurrency={true}
+              />
+            );
+          }}
         />
 
         {/* 목표 기간 */}
         <Input
           label="목표 기간 (년)"
           type="number"
-          {...register("targetPeriod", { valueAsNumber: true })}
+          {...register("targetPeriod", { 
+            valueAsNumber: true,
+            onChange: () => {
+              // 수동 입력 시 템플릿 해제
+              setSelectedGoal(null);
+            }
+          })}
           error={errors.targetPeriod?.message}
           placeholder="예: 10"
         />
@@ -115,7 +226,7 @@ export function TargetCalculator() {
           className="w-full"
           size="lg"
         >
-          역산 계산하기
+          필요한 월 투자금 계산하기 👍
         </Button>
       </form>
 

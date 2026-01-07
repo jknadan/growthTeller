@@ -40,17 +40,17 @@ interface SimulationStore {
   reset: () => void;
 }
 
-// 기본 입력값
+// 기본 입력값 - 사회초년생 맞춤형
 const defaultInput: SimulationInput = {
-  monthlyAmount: 1000000, // 100만원
+  monthlyAmount: 500000, // 50만원 - 더 현실적인 시작 금액
   investmentPeriod: 10, // 10년
-  strategy: "index", // 인덱스 ETF
+  strategy: "index", // 인덱스 ETF - 초보자 추천
   exchangeRate: 1400, // 1,400원
   exchangeRateOption: "fixed",
   portfolioAllocation: {
-    bond: 20,
-    index: 60,
-    dividend: 20,
+    bond: 30,      // 안정성 30%
+    index: 50,     // 성장성 50%
+    dividend: 20,  // 배당 20%
   },
 };
 

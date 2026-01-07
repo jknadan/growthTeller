@@ -284,3 +284,36 @@ export function formatPercentage(rate: number): string {
   return `${rate.toFixed(2)}%`;
 }
 
+/**
+ * 숫자를 한글 금액으로 변환
+ * 예: 1000000 -> "백만원"
+ */
+export function formatKoreanCurrency(amount: number): string {
+  const units = ["원", "만원", "억원", "조원"];
+  const unitValue = 10000;
+
+  let formattedAmount = amount;
+  let unitIndex = 0;
+
+  // "만원" 단위로 변환
+  if (amount >= unitValue) {
+    formattedAmount = Math.floor(amount / unitValue);
+    unitIndex = 1;
+  }
+
+  // "억원" 단위로 변환
+  if (formattedAmount >= unitValue) {
+    formattedAmount = Math.floor(formattedAmount / unitValue);
+    unitIndex = 2;
+  }
+
+  // "조원" 단위로 변환
+  if (formattedAmount >= unitValue) {
+    formattedAmount = Math.floor(formattedAmount / unitValue);
+    unitIndex = 3;
+  }
+
+  // 천 단위로 쉼표 추가
+  const numberFormat = new Intl.NumberFormat("ko-KR");
+  return `${numberFormat.format(formattedAmount)}${units[unitIndex]}`;
+}
