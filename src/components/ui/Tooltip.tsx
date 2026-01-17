@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle } from "lucide-react";
 
 interface TooltipProps {
-  content: string;
+  content?: string;
   children?: React.ReactNode;
   term?: string;
 }
@@ -26,7 +26,7 @@ export const financialTerms: Record<string, string> = {
   "세후 수익률": "세금을 뺀 실제 수익률. 투자 수익에는 15.4%의 세금이 붙음"
 };
 
-export function Tooltip({ content, children, term }: TooltipProps) {
+export function Tooltip({ content = "", children, term }: TooltipProps) {
   const [isVisible, setIsVisible] = useState(false);
   
   const tooltipContent = term ? financialTerms[term] || content : content;
