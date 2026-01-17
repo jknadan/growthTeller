@@ -114,7 +114,7 @@ export default function ComparisonPage() {
                       시나리오 저장
                     </h4>
                     <p className="text-sm text-green-700">
-                      "현재 시나리오 추가" 버튼으로 결과를 저장하세요
+                      &quot;현재 시나리오 추가&quot; 버튼으로 결과를 저장하세요
                     </p>
                   </div>
                   <div className="text-center p-4 bg-purple-50 rounded-lg">

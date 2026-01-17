@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { OnboardingModal } from "../components/onboarding/OnboardingModal";
 import { FeatureCard } from "../components/cards/FeatureCard";
 

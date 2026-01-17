@@ -5,7 +5,6 @@ import {
   SimulationResult,
   ScenarioComparison,
   TargetCalculation,
-  PortfolioAllocation,
 } from "../types";
 import {
   calculateSimulation,

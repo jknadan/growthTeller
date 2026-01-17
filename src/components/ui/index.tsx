@@ -88,7 +88,7 @@ export function NumberInput({
     // #endregion
     
     setDisplayValue(formatted);
-  }, [value, formatNumber]);
+  }, [value, formatNumber, label]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;

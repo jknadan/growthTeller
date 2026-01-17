@@ -45,7 +45,7 @@ export function FeatureCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const colors = colorClasses[color];
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = () => {
     setIsTouching(true);
   };
 
@@ -107,3 +107,4 @@ export function FeatureCard({
     </Link>
   );
 }
+

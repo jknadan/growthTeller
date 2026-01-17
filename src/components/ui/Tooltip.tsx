@@ -73,8 +73,7 @@ export function Tooltip({ content, children, term }: TooltipProps) {
 // 용어가 포함된 텍스트를 자동으로 툴팁으로 변환
 export function TextWithTooltips({ text }: { text: string }) {
   const terms = Object.keys(financialTerms);
-  let result = text;
-  let components: React.ReactNode[] = [];
+  const components: React.ReactNode[] = [];
   let lastIndex = 0;
 
   terms.forEach((term) => {

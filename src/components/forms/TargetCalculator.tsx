@@ -15,7 +15,6 @@ import { InvestmentStrategy } from "../../types";
 import { useSimulationStore } from "../../stores/simulationStore";
 import { formatCurrency } from "../../utils/calculations";
 import { GoalSelector, GoalDetails, GoalTemplate } from "../goals/GoalTemplates";
-import { Tooltip } from "../ui/Tooltip";
 
 // 목표 금액 역산 폼 검증 스키마
 const targetSchema = z.object({
@@ -48,7 +47,6 @@ export function TargetCalculator() {
     watch,
     formState: { errors },
     control,
-    setValue,
     reset,
   } = useForm<TargetFormData>({
     resolver: zodResolver(targetSchema),

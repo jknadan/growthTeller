@@ -38,7 +38,7 @@ export function SimulationChart({
   const comparisonData =
     scenarios.length > 0
       ? result.yearlyResults.map((year) => {
-          const data: any = { year: `${year.year}년` };
+          const data: Record<string, number | string> = { year: `${year.year}년` };
           scenarios.forEach((scenario) => {
             const scenarioYear = scenario.yearlyResults.find(
               (y) => y.year === year.year
@@ -165,7 +165,7 @@ export function SimulationChart({
                   labelFormatter={(label) => `${label}`}
                 />
                 <Legend />
-                {scenarios.map((scenario, index) => (
+                {scenarios.map((scenario) => (
                   <Line
                     key={scenario.name}
                     type="monotone"
